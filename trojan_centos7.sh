@@ -76,10 +76,10 @@ if [ $real_addr == $local_addr ] ; then
 	if test -s /usr/src/trojan-cert/fullchain.cer; then
         cd /usr/src
 	#wget https://github.com/trojan-gfw/trojan/releases/download/v1.13.0/trojan-1.13.0-linux-amd64.tar.xz
-	wget https://github.com/trojan-gfw/trojan/releases/download/v1.14.0/trojan-1.14.0-linux-amd64.tar.xz
+	wget https://raw.githubusercontent.com/padavan01/trojan/master/trojan-1.14.0-linux-amd64.tar.xz
 	tar xf trojan-1.*
 	#下载trojan客户端
-	wget https://github.com/atrandys/trojan/raw/master/trojan-cli.zip
+	wget https://raw.githubusercontent.com/padavan01/trojan/master/trojan-cli.zip
 	unzip trojan-cli.zip
 	cp /usr/src/trojan-cert/fullchain.cer /usr/src/trojan-cli/fullchain.cer
 	trojan_passwd=$(cat /dev/urandom | head -1 | md5sum | head -c 8)
@@ -174,8 +174,8 @@ After=network.target
    
 [Service]  
 Type=simple  
-PIDFile=/usr/src/trojan/trojan/trojan.pid
-ExecStart=/usr/src/trojan/trojan -c "/usr/src/trojan/server.conf"  
+PIDFile=/usr/src/trojan/trojan.pid
+ExecStart=/usr/src/trojan/trojan -c /usr/src/trojan/server.conf  
 ExecReload=  
 ExecStop=/usr/src/trojan/trojan  
 PrivateTmp=true  
